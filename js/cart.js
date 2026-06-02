@@ -120,15 +120,19 @@ function showCartToast(productName, quantity) {
             <div class="toast-title">已加入購物車</div>
             <div class="toast-product">${productName}${quantity > 1 ? ` × ${quantity}` : ''}</div>
         </div>
-        <a href="cart.html" class="toast-cart-link">前往購物車</a>
+        <div class="toast-actions">
+            <a href="cart.html" class="toast-cart-link">前往購物車</a>
+            <button type="button" class="toast-confirm-btn">確認</button>
+        </div>
     `;
 
-    container.appendChild(toast);
-
-    setTimeout(() => {
+    const confirmBtn = toast.querySelector('.toast-confirm-btn');
+    confirmBtn.addEventListener('click', () => {
         toast.classList.add('toast-hide');
         toast.addEventListener('animationend', () => toast.remove(), { once: true });
-    }, 3000);
+    });
+
+    container.appendChild(toast);
 }
 
 // 頁面載入時更新購物車徽章
